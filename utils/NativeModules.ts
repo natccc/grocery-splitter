@@ -24,6 +24,7 @@ export async function showScannerView(): Promise<void> {
 export async function recognizeText(): Promise<void> {
   try {
     const text = await TextRecognizerBridge.recognizeTextFromCamera();
+    return text
     console.log("Recognized text:", text);
   } catch (error) {
     console.error("Text recognition failed:", error);
