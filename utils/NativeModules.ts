@@ -25,7 +25,6 @@ export async function recognizeText(): Promise<void> {
   try {
     const text = await TextRecognizerBridge.recognizeTextFromCamera();
     return text
-    console.log("Recognized text:", text);
   } catch (error) {
     console.error("Text recognition failed:", error);
   }

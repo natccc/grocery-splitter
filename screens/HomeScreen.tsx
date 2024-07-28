@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
-import {recognizeText} from '@/utils/NativeModules'; 
+import {recognizeText} from '../utils/NativeModules'; 
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen: React.FC = () => {
     const navigation = useNavigation();
-
   const handleRecognizeText = async () => {
     try {
       const text = await recognizeText();
@@ -20,7 +19,7 @@ const HomeScreen: React.FC = () => {
       <Button title="Recognize Text" onPress={handleRecognizeText} />
     </View>
   );
-};
+}; 
 
 const styles = StyleSheet.create({
   container: {
