@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
-import {recognizeText} from '../utils/NativeModules'; 
+import {recognizeText,showScannerView} from '../utils/NativeModules'; 
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen: React.FC = () => {
@@ -8,7 +8,7 @@ const HomeScreen: React.FC = () => {
   const handleRecognizeText = async () => {
     try {
       const text = await recognizeText();
-      navigation.navigate('RecognizedText',{recognizedText: text})
+      navigation.navigate('PasteItems')
     } catch (error) {
       console.error(error);
     }

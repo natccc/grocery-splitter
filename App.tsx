@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback,useEffect} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
 import {
   showContentView,
@@ -9,23 +9,32 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator()
 import HomeScreen from './screens/HomeScreen';
-import RecognizedTextScreen from './screens/RecognizedTextScreen';
+import PasteItems from './screens/PasteItems';
+import Categorise from './screens/Categorise';
+import { connectToDatabase,createTables } from './services/db-service';
+
 const App: React.FC = () => {
-  // const [recognizedText, setRecognizedText] = useState('');
-  // const handlePress = async () => {
-  //   const text = await recognizeText();
-  //   setRecognizedText(text);
-  // };
+const loadData = useCallback(async () => {
+  try {
+    const db = await connectToDatabase();
+    await createTables(db);
+  } catch (error) {
+    console.error(error);
+  }
+}, []);
+
+useEffect(() => {
+  loadData();
+}, [loadData]);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name = "Home" component={HomeScreen} />
-        <Stack.Screen name = "RecognizedText" component={RecognizedTextScreen} />
-      {/* <View style={styles.container}>
-        <Button title="Show scanner View" onPress={handlePress} />
-        {recognizedText && <Text style={styles.text}>{recognizedText}</Text>}
-        </View> */}
+        <Stack.Screen name = "PasteItems" component={PasteItems} />
+        <Stack.Screen name = "Categorise" component={Categorise} />
+
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,12 +1,17 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 
 const RecognizedTextScreen: React.FC<{route: any}> = ({route}) => {
-  const {recognizedText} = route.params;
+  const { recognizedText } = route.params;
+  console.log(recognizedText)
+    const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{recognizedText}</Text>
+      <Button title='Categorise' onPress={()=>navigation.navigate('Categorise',{recognizedText: recognizedText})
+}/>
     </View>
   );
 };

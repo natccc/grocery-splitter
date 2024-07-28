@@ -3,14 +3,14 @@ import { NativeModules } from "react-native";
 const { ContentViewBridge, ScannerViewBridge, TextRecognizerBridge } =
   NativeModules;
 
-export async function showContentView(): Promise<void> {
-  try {
-    await ContentViewBridge.presentContentView();
-    console.log("ContentView presented");
-  } catch (error) {
-    console.error("Failed to present ContentView:", error);
-  }
-}
+// export async function showContentView(): Promise<void> {
+//   try {
+//     await ContentViewBridge.presentContentView();
+//     console.log("ContentView presented");
+//   } catch (error) {
+//     console.error("Failed to present ContentView:", error);
+//   }
+// }
 
 export async function showScannerView(): Promise<void> {
   try {
