@@ -80,9 +80,16 @@ export const loadItemsByDate = async (
   }) => void,
 ): Promise<void> => {
   try {
-    const allRows: CategorizedReceiptItem[] = await db.executeSql(
+    const results = await db.executeSql(
       'SELECT * FROM items ORDER BY timestamp DESC',
     );
+      const allRows: CategorizedReceiptItem[] = [];
+    results.forEach(resultSet => {
+      for (let i = 0; i < resultSet.rows.length; i++) {
+        allRows.push(resultSet.rows.item(i))
+      }
+    })
+
     const groupedData = allRows.reduce<{
       [key: string]: CategorizedReceiptItem[];
     }>((acc, item) => {

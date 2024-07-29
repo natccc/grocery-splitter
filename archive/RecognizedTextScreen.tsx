@@ -4,7 +4,6 @@ import {View, Text, StyleSheet, Button} from 'react-native';
 
 const RecognizedTextScreen: React.FC<{route: any}> = ({route}) => {
   const { recognizedText } = route.params;
-  console.log(recognizedText)
     const navigation = useNavigation();
 
   return (

@@ -5,7 +5,7 @@ import {NativeModules} from 'react-native';
 
 const {SwiftUIViewControllerBridge} = NativeModules;
 
-export default function PasteItems() {
+export default function HomeScreen() {
   const navigation = useNavigation();
   const [copiedItems, setCopiedItems] = useState('');
 

@@ -11,7 +11,7 @@ const HomeScreen: React.FC = () => {
     try {
       const text = await recognizeText();
       console.log(text)
-      navigation.navigate('PasteItems')
+      navigation.navigate('HomeScreen')
     } catch (error) {
       console.error(error);
     }
