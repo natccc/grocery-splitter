@@ -8,7 +8,7 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator()
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './archive/HomeScreen';
 import PasteItems from './screens/PasteItems';
 import Categorise from './screens/Categorise';
 import { connectToDatabase,createTables } from './services/db-service';
@@ -30,7 +30,7 @@ useEffect(() => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name = "Home" component={HomeScreen} />
+        {/* <Stack.Screen name = "Home" component={HomeScreen} /> */}
         <Stack.Screen name = "PasteItems" component={PasteItems} />
         <Stack.Screen name = "Categorise" component={Categorise} />
 

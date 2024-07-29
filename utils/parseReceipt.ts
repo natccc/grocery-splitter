@@ -7,7 +7,7 @@ export interface ReceiptItemProps{
 
 export const parseReceipt = (
   receipt: string
-): { items: ReceiptItemProps[]; outcome: string } => {
+): { items: ReceiptItemProps[];  } => {
   const lines = receipt
     .split("\n")
     .map((line) => line.trim())
@@ -25,7 +25,7 @@ export const parseReceipt = (
     }
 
     let itemPrice;
-    while (i < lines.length && !/^[£$\d.]+$/.test(lines[i])) {
+    while (i < lines.length && !/^[€£$\d.]+$/.test(lines[i])) {
       i++;
     }
 
@@ -35,11 +35,11 @@ export const parseReceipt = (
       throw new Error(`Price missing for item: ${itemName}`);
     }
 
-    if (!/^[£$\d.]+$/.test(itemPrice)) {
+    if (!/^[€£$\d.]+$/.test(itemPrice)) {
       throw new Error(`Invalid price format for item: ${itemName}`);
     }
 
-    let price = parseFloat(itemPrice.replace(/[£$]/, ""));
+    let price = parseFloat(itemPrice.replace(/[€£$]/, ''));
     price = Math.round(price * 100) / 100;
     let savings = 0;
     items.push({
@@ -59,9 +59,9 @@ export const parseReceipt = (
         count = parseInt(match[1], 10);
       }
 
-      if (i < lines.length && /^[-£$\d.]+$/.test(lines[i])) {
+      if (i < lines.length && /^[-£€$\d.]+$/.test(lines[i])) {
         const savingsPrice = lines[i++];
-        const totalSavings = parseFloat(savingsPrice.replace(/[£$]/, ""));
+        const totalSavings = parseFloat(savingsPrice.replace(/[£$]/, ''));
         savingsPerItem = totalSavings / count;
         for (let j = items.length - count; j < items.length; j++) {
           if (j >= 0) {
@@ -73,10 +73,8 @@ export const parseReceipt = (
       }
     }
   }
-  const balanceDue = lines.length > 0 ? parseFloat(lines.pop()!.slice(1)) : 0;
   const total = items.reduce((acc, item) => acc + item.price, 0);
-  const outcome = balanceDue == total ? "Success" : "Unbalanced";
-  return { items, outcome };
+  return { items };
 };
 
 

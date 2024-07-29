@@ -25,6 +25,9 @@
 		D1E1B52D2C558D4B00A8536D /* ContentViewBridge.swift  .swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */; };
 		D1E1B52F2C558D9400A8536D /* ScannerViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */; };
 		D1E1B5312C558DA700A8536D /* TextRecognizerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */; };
+		D1E1B53A2C57104F00A8536D /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */; };
+		D1E1B53E2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */; };
+		D1E1B5442C5716BD00A8536D /* SwiftUIViewControllerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentViewBridge.swift  .swift"; sourceTree = "<group>"; };
 		D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewBridge.swift; sourceTree = "<group>"; };
 		D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerBridge.swift; sourceTree = "<group>"; };
+		D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewController.swift; sourceTree = "<group>"; };
+		D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewControllerBridge.swift; sourceTree = "<group>"; };
+		D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftUIViewControllerBridge.m; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -115,15 +121,18 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				D1E1B5272C55813600A8536D /* ContentViewBridge.m */,
 				D1E1B5282C55813600A8536D /* ScannerViewBridge.m */,
+				D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */,
 				D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */,
 				D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */,
 				D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */,
+				D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */,
 				D1E1B5262C55813600A8536D /* TextRecognizerBridge.m */,
 				D1E1B51F2C55805900A8536D /* ContentView.swift */,
 				D1E1B51E2C55805900A8536D /* ScanData.swift */,
 				D1E1B5212C55805900A8536D /* ScannerView.swift */,
 				D1E1B5202C55805900A8536D /* TextRecognizer.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
@@ -434,10 +443,13 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				D1E1B52A2C55813600A8536D /* ContentViewBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				D1E1B5442C5716BD00A8536D /* SwiftUIViewControllerBridge.m in Sources */,
 				D1E1B5242C55805900A8536D /* TextRecognizer.swift in Sources */,
 				D1E1B5292C55813600A8536D /* TextRecognizerBridge.m in Sources */,
 				D1E1B5252C55805900A8536D /* ScannerView.swift in Sources */,
+				D1E1B53A2C57104F00A8536D /* SwiftUIViewController.swift in Sources */,
 				D1E1B5312C558DA700A8536D /* TextRecognizerBridge.swift in Sources */,
+				D1E1B53E2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift in Sources */,
 				D1E1B5232C55805900A8536D /* ContentView.swift in Sources */,
 				D1E1B52D2C558D4B00A8536D /* ContentViewBridge.swift  .swift in Sources */,
 				D1E1B5222C55805900A8536D /* ScanData.swift in Sources */,
@@ -640,10 +652,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -715,10 +724,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
