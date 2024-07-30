@@ -35,23 +35,14 @@ const calculateCategoryTotal = (
 };
 
 export default function Categorise({route}) {
-  const { copiedItems } = route.params;
-  console.log(copiedItems)
+  const {copiedItems} = route.params;
+  console.log(copiedItems, 'copieditems');
   const result = parseReceipt(copiedItems);
-  console.log(result);
+  console.log(result, 'parsed results');
   const [categorizedItems, setCategorizedItems] = useState<
     CategorizedReceiptItem[]
-  >(result.items.map(item => ({...item, category: 'Shared'})));
-  // const { date } = useLocalSearchParams<{ date: string }>();
+  >(result.map(item => ({...item, category: 'Shared'})));
 
-  // useEffect(() => {
-  //   loadItemsByDate((loadedItems) => {
-  //     const decodedDate = decodeURIComponent(date!);
-  //     if (loadedItems[decodedDate] && loadedItems[decodedDate].length > 0) {
-  //       setCategorizedItems(loadedItems[decodedDate]);
-  //     }
-  //   });
-  // }, [date]);
 
   const categorizeItem = (index: number, category: string) => {
     const newItems = [...categorizedItems];
@@ -116,7 +107,6 @@ export default function Categorise({route}) {
       <Button title="Save Data" onPress={saveDataToDB} />
 
       <View style={styles.summaryContainer}>
-        <Text style={styles.summaryTitle}>Outcome: {result.outcome}</Text>
         <View style={styles.indexContainer}>
           {categories.map(category => (
             <View style={styles.indexItem} key={category.label}>

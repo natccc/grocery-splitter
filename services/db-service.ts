@@ -112,10 +112,16 @@ export const loadSummaries = async (
   callback: (summaries: ReceiptSummary[]) => void,
 ): Promise<void> => {
   try {
-    const summaries: ReceiptSummary[] = await db.executeSql(
+    const summaries: ReceiptSummary[] = []
+    const results= await db.executeSql(
       'SELECT * FROM summaries WHERE timestamp = ?',
       [date],
     );
+    results.forEach(resultSet => {
+      for (let i = 0; i < resultSet.rows.length; i++) {
+        summaries.push(resultSet.rows.item(i))
+      }
+    })
     callback(summaries);
   } catch (error) {
     console.error('Error fetching summaries:', error);

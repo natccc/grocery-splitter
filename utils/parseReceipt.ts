@@ -7,7 +7,7 @@ export interface ReceiptItemProps{
 
 export const parseReceipt = (
   receipt: string
-): { items: ReceiptItemProps[];  } => {
+):  [items: ReceiptItemProps[]]   => {
   const lines = receipt
     .split("\n")
     .map((line) => line.trim())
@@ -74,7 +74,7 @@ export const parseReceipt = (
     }
   }
   const total = items.reduce((acc, item) => acc + item.price, 0);
-  return { items };
+  return items ;
 };
 
 

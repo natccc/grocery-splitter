@@ -11,28 +11,25 @@ export default function DateItems() {
   const [data, setData] = useState<{[key: string]: CategorizedReceiptItem[]}>(
     {},
   );
-  const [db, setDb] = useState<SQLiteDatabase | null>(null);
 
-  const loadData = useCallback(async () => {
-    try {
-      const database = await connectToDatabase();
-      setDb(database);
-    } catch (error) {
-      console.error('Error connecting to the database:', error);
-    }
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const db = await connectToDatabase();
+        if (db) {
+          loadItemsByDate(db, loadedData => {
+            setData(loadedData);
+          });
+        }
+      } catch (error) {
+        console.error(
+          'Error connecting to the database or loading items:',
+          error,
+        );
+      }
+    };
+    loadData()
   }, []);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
-  useEffect(() => {
-    if (db) {
-      loadItemsByDate(db, loadedData => {
-        setData(loadedData);
-      });
-    }
-  }, [db]);
 
   const navigation = useNavigation();
 
