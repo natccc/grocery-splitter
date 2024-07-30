@@ -51,11 +51,6 @@ export default function ItemsByDate({route}) {
     </View>
   );
 
-  const renderHeader = () => (
-    <View>
-      <Text style={styles.sectionHeader}>Items on {date}</Text>
-    </View>
-  );
 
   const renderFooter = () => (
     <View style={styles.summaryContainer}>
@@ -83,7 +78,6 @@ export default function ItemsByDate({route}) {
         data={itemsByDate}
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
-        ListHeaderComponent={renderHeader}
         ListFooterComponent={renderFooter}
       />
     </View>

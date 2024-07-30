@@ -36,7 +36,7 @@ export default function DateItems() {
   const renderDateItem = ({item}: {item: string}) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('Items by date', {date: item})}>
+      onPress={() => navigation.navigate('ItemsByDate', {date: item})}>
       <Text style={styles.itemText}>{item}</Text>
     </TouchableOpacity>
   );
