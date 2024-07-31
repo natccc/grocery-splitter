@@ -35,14 +35,11 @@ const calculateCategoryTotal = (
 };
 
 export default function Categorise({route}) {
-  const {copiedItems} = route.params;
-  console.log(copiedItems, 'copieditems');
-  const result = parseReceipt(copiedItems);
-  console.log(result, 'parsed results');
+  const { copiedText } = route.params;
+  const result = parseReceipt(copiedText);
   const [categorizedItems, setCategorizedItems] = useState<
     CategorizedReceiptItem[]
   >(result.map(item => ({...item, category: 'Shared'})));
-
 
   const categorizeItem = (index: number, category: string) => {
     const newItems = [...categorizedItems];
@@ -50,27 +47,26 @@ export default function Categorise({route}) {
     setCategorizedItems(newItems);
   };
 
-  const saveDataToDB = async () => {
-    try {
-      const total = parseFloat(calculateTotal(categorizedItems));
-      const categoryTotals = categories.reduce((acc, category) => {
-        acc[category.label] = parseFloat(
-          calculateCategoryTotal(categorizedItems, category.label),
-        );
-        return acc;
-      }, {} as {[key: string]: number});
-      const db = await connectToDatabase();
-      await saveSummary(db, total, categoryTotals);
-      for (const item of categorizedItems) {
-        await saveItem(db, item.name, item.price, item.category);
-      }
-      Alert.alert('Success', 'Data saved successfully!');
-    } catch (error) {
-      console.error('Error saving data:', error);
-      Alert.alert('Error', 'Failed to save data.');
+const saveDataToDB = async () => {
+  try {
+    const total = parseFloat(calculateTotal(categorizedItems));
+    const categoryTotals = categories.reduce((acc, category) => {
+      acc[category.label] = parseFloat(
+        calculateCategoryTotal(categorizedItems, category.label),
+      );
+      return acc;
+    }, {} as {[key: string]: number});
+    const db = await connectToDatabase();
+    await saveSummary(db, total, categoryTotals);
+    for (const item of categorizedItems) {
+      await saveItem(db, item.name, item.price, item.category);
     }
-  };
-
+    Alert.alert('Success', 'Data saved successfully!');
+  } catch (error) {
+    console.error('Error saving data:', error);
+    Alert.alert('Error', 'Failed to save data.');
+  }
+};
   const renderItem = ({
     item,
     index,
@@ -97,7 +93,7 @@ export default function Categorise({route}) {
     </View>
   );
 
-  return (
+  return copiedText ? (
     <View style={styles.container}>
       <FlatList
         data={categorizedItems}
@@ -127,6 +123,10 @@ export default function Categorise({route}) {
           Total: £{calculateTotal(categorizedItems)}
         </Text>
       </View>
+    </View>
+  ) : (
+      <View style={styles.noDataContainer}>
+        <Text style={styles.noDataText}>No data</Text>
     </View>
   );
 }
@@ -200,5 +200,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
+  },
+  noDataContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  noDataText: {
+    fontSize: 20,
+    textAlign: 'center',
   },
 });

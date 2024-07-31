@@ -17,7 +17,6 @@ const {SwiftUIViewControllerBridge} = NativeModules;
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const [copiedItems, setCopiedItems] = useState('');
   const [copiedText, setCopiedText] = useState('');
 
   const openCamera = () => {
@@ -49,7 +48,7 @@ export default function HomeScreen() {
         </View>
         <TouchableOpacity
           style={[styles.button, styles.submitButton]}
-          onPress={() => navigation.navigate('Categorise', {copiedItems})}>
+          onPress={() => navigation.navigate('Categorise', {copiedText})}>
           <Text style={styles.buttonText}>Categorise</Text>
         </TouchableOpacity>
       </ScrollView>

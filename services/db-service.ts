@@ -132,3 +132,7 @@ export const deleteAllData = async (db: SQLiteDatabase): Promise<void> => {
   await db.executeSql('DROP table items');
   await db.executeSql('DROP table summaries');
 };
+
+export const deleteItemsByDate = async (db: SQLiteDatabase, date:string): Promise<void> => {
+  await db.executeSql('DELETE FROM items WHERE timestamp =?', [date]);
+}

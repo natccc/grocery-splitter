@@ -11,6 +11,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DateItems from './screens/DateItems';
 import ItemsByDate from './screens/ItemsByDate';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Tab = createBottomTabNavigator();
 function HomeStack() {
@@ -54,27 +55,29 @@ const App: React.FC = () => {
   }, [loadData]);
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color, size}) => {
-            let iconName;
-            if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'home-outline';
-            }
-            if (route.name === 'History') {
-              iconName = focused ? 'time' : 'time-outline';
-            }
-            return <Icon name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-          headerShown: false,
-        })}>
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="History" component={HistoryStack} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
+              let iconName;
+              if (route.name === 'Home') {
+                iconName = focused ? 'home' : 'home-outline';
+              }
+              if (route.name === 'History') {
+                iconName = focused ? 'time' : 'time-outline';
+              }
+              return <Icon name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+            headerShown: false,
+          })}>
+          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="History" component={HistoryStack} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 };
 
