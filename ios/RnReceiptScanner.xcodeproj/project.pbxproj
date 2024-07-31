@@ -15,16 +15,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-RnReceiptScanner-RnReceiptScannerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-RnReceiptScanner-RnReceiptScannerTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D1E1B5222C55805900A8536D /* ScanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B51E2C55805900A8536D /* ScanData.swift */; };
-		D1E1B5232C55805900A8536D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B51F2C55805900A8536D /* ContentView.swift */; };
-		D1E1B5242C55805900A8536D /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5202C55805900A8536D /* TextRecognizer.swift */; };
-		D1E1B5252C55805900A8536D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5212C55805900A8536D /* ScannerView.swift */; };
-		D1E1B5292C55813600A8536D /* TextRecognizerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5262C55813600A8536D /* TextRecognizerBridge.m */; };
-		D1E1B52A2C55813600A8536D /* ContentViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5272C55813600A8536D /* ContentViewBridge.m */; };
-		D1E1B52B2C55813600A8536D /* ScannerViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5282C55813600A8536D /* ScannerViewBridge.m */; };
-		D1E1B52D2C558D4B00A8536D /* ContentViewBridge.swift  .swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */; };
-		D1E1B52F2C558D9400A8536D /* ScannerViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */; };
-		D1E1B5312C558DA700A8536D /* TextRecognizerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */; };
 		D1E1B53A2C57104F00A8536D /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */; };
 		D1E1B53E2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */; };
 		D1E1B5442C5716BD00A8536D /* SwiftUIViewControllerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */; };
@@ -60,16 +50,6 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RnReceiptScanner/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-RnReceiptScanner-RnReceiptScannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnReceiptScanner-RnReceiptScannerTests.release.xcconfig"; path = "Target Support Files/Pods-RnReceiptScanner-RnReceiptScannerTests/Pods-RnReceiptScanner-RnReceiptScannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		D1E1B51D2C55805900A8536D /* RnReceiptScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RnReceiptScanner-Bridging-Header.h"; sourceTree = "<group>"; };
-		D1E1B51E2C55805900A8536D /* ScanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScanData.swift; path = RnReceiptScanner/ScanData.swift; sourceTree = "<group>"; };
-		D1E1B51F2C55805900A8536D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = RnReceiptScanner/ContentView.swift; sourceTree = "<group>"; };
-		D1E1B5202C55805900A8536D /* TextRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextRecognizer.swift; path = RnReceiptScanner/TextRecognizer.swift; sourceTree = "<group>"; };
-		D1E1B5212C55805900A8536D /* ScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScannerView.swift; path = RnReceiptScanner/ScannerView.swift; sourceTree = "<group>"; };
-		D1E1B5262C55813600A8536D /* TextRecognizerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextRecognizerBridge.m; sourceTree = "<group>"; };
-		D1E1B5272C55813600A8536D /* ContentViewBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewBridge.m; sourceTree = "<group>"; };
-		D1E1B5282C55813600A8536D /* ScannerViewBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewBridge.m; sourceTree = "<group>"; };
-		D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentViewBridge.swift  .swift"; sourceTree = "<group>"; };
-		D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewBridge.swift; sourceTree = "<group>"; };
-		D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerBridge.swift; sourceTree = "<group>"; };
 		D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewController.swift; sourceTree = "<group>"; };
 		D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewControllerBridge.swift; sourceTree = "<group>"; };
 		D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftUIViewControllerBridge.m; sourceTree = "<group>"; };
@@ -119,18 +99,8 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				D1E1B5272C55813600A8536D /* ContentViewBridge.m */,
-				D1E1B5282C55813600A8536D /* ScannerViewBridge.m */,
 				D1E1B5392C57104F00A8536D /* SwiftUIViewController.swift */,
-				D1E1B52C2C558D4B00A8536D /* ContentViewBridge.swift  .swift */,
-				D1E1B52E2C558D9400A8536D /* ScannerViewBridge.swift */,
-				D1E1B5302C558DA700A8536D /* TextRecognizerBridge.swift */,
 				D1E1B5432C5716BD00A8536D /* SwiftUIViewControllerBridge.m */,
-				D1E1B5262C55813600A8536D /* TextRecognizerBridge.m */,
-				D1E1B51F2C55805900A8536D /* ContentView.swift */,
-				D1E1B51E2C55805900A8536D /* ScanData.swift */,
-				D1E1B5212C55805900A8536D /* ScannerView.swift */,
-				D1E1B5202C55805900A8536D /* TextRecognizer.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				D1E1B53D2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -439,21 +409,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1E1B52B2C55813600A8536D /* ScannerViewBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				D1E1B52A2C55813600A8536D /* ContentViewBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				D1E1B5442C5716BD00A8536D /* SwiftUIViewControllerBridge.m in Sources */,
-				D1E1B5242C55805900A8536D /* TextRecognizer.swift in Sources */,
-				D1E1B5292C55813600A8536D /* TextRecognizerBridge.m in Sources */,
-				D1E1B5252C55805900A8536D /* ScannerView.swift in Sources */,
 				D1E1B53A2C57104F00A8536D /* SwiftUIViewController.swift in Sources */,
-				D1E1B5312C558DA700A8536D /* TextRecognizerBridge.swift in Sources */,
 				D1E1B53E2C5710AE00A8536D /* SwiftUIViewControllerBridge.swift in Sources */,
-				D1E1B5232C55805900A8536D /* ContentView.swift in Sources */,
-				D1E1B52D2C558D4B00A8536D /* ContentViewBridge.swift  .swift in Sources */,
-				D1E1B5222C55805900A8536D /* ScanData.swift in Sources */,
-				D1E1B52F2C558D9400A8536D /* ScannerViewBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,10 +612,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -727,10 +684,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
