@@ -12,17 +12,17 @@ import {
   CategorizedReceiptItem,
   connectToDatabase,
   deleteItemsByDate,
+  deleteAllData
 } from '../services/db-service';
 import {useNavigation} from '@react-navigation/native';
 import {SQLiteDatabase} from 'react-native-sqlite-storage';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useFocusEffect} from '@react-navigation/native';
-
+import { convertToISOString } from '../utils/convertToISOString';
 export default function DateItems() {
   const [data, setData] = useState<{[key: string]: CategorizedReceiptItem[]}>(
     {},
   );
-
   const loadData = async () => {
     try {
       const db = await connectToDatabase();
@@ -38,7 +38,6 @@ export default function DateItems() {
       );
     }
   };
-
   useFocusEffect(
     useCallback(() => {
       loadData();
@@ -46,11 +45,13 @@ export default function DateItems() {
   );
 
   const navigation = useNavigation();
+
   const handleDelete = async (date: string) => {
     try {
       const db = await connectToDatabase();
       if (db) {
-        await deleteItemsByDate(db, date);
+        const isoDate = convertToISOString(date);
+        await deleteItemsByDate(db, isoDate);
         setData(prevData => {
           const newState = {...prevData};
           delete newState[date];
@@ -63,8 +64,9 @@ export default function DateItems() {
       Alert.alert('Error', 'Failed to delete items.');
     }
   };
-
+  // console.log(data)
   const renderRightActions = (date: string) => {
+
     return (
       <View style={styles.deleteButtonContainer}>
         <TouchableOpacity

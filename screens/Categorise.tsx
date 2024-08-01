@@ -35,7 +35,7 @@ const calculateCategoryTotal = (
 };
 
 export default function Categorise({route}) {
-  const { copiedText } = route.params;
+  const {copiedText} = route.params;
   const result = parseReceipt(copiedText);
   const [categorizedItems, setCategorizedItems] = useState<
     CategorizedReceiptItem[]
@@ -47,26 +47,31 @@ export default function Categorise({route}) {
     setCategorizedItems(newItems);
   };
 
-const saveDataToDB = async () => {
-  try {
-    const total = parseFloat(calculateTotal(categorizedItems));
-    const categoryTotals = categories.reduce((acc, category) => {
-      acc[category.label] = parseFloat(
-        calculateCategoryTotal(categorizedItems, category.label),
-      );
-      return acc;
-    }, {} as {[key: string]: number});
-    const db = await connectToDatabase();
-    await saveSummary(db, total, categoryTotals);
-    for (const item of categorizedItems) {
-      await saveItem(db, item.name, item.price, item.category);
+  const saveDataToDB = async () => {
+    try {
+      const total = parseFloat(calculateTotal(categorizedItems));
+      const categoryTotals = categories.reduce((acc, category) => {
+        acc[category.label] = parseFloat(
+          calculateCategoryTotal(categorizedItems, category.label),
+        );
+        return acc;
+      }, {} as {[key: string]: number});
+      const db = await connectToDatabase();
+      const now = new Date();
+      now.setSeconds(0)
+      now.setMilliseconds(0);
+      const timestamp = now.toISOString()
+      console.log(timestamp, "timestamp while saving")
+      await saveSummary(db, total, categoryTotals, timestamp);
+      for (const item of categorizedItems) {
+        await saveItem(db, item.name, item.price, item.category, timestamp);
+      }
+      Alert.alert('Success', 'Data saved successfully!');
+    } catch (error) {
+      console.error('Error saving data:', error);
+      Alert.alert('Error', 'Failed to save data.');
     }
-    Alert.alert('Success', 'Data saved successfully!');
-  } catch (error) {
-    console.error('Error saving data:', error);
-    Alert.alert('Error', 'Failed to save data.');
-  }
-};
+  };
   const renderItem = ({
     item,
     index,
@@ -125,8 +130,8 @@ const saveDataToDB = async () => {
       </View>
     </View>
   ) : (
-      <View style={styles.noDataContainer}>
-        <Text style={styles.noDataText}>No data</Text>
+    <View style={styles.noDataContainer}>
+      <Text style={styles.noDataText}>No data</Text>
     </View>
   );
 }

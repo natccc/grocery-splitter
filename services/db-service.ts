@@ -4,8 +4,26 @@ import {
   SQLiteDatabase,
 } from 'react-native-sqlite-storage';
 import {format} from 'date-fns';
+import { convertToISOString } from '../utils/convertToISOString';
 
 enablePromise(true);
+export const logAllItems = async (db: SQLiteDatabase): Promise<void> => {
+  try {
+    const results = await db.executeSql('SELECT * FROM items');
+    console.log('All items in the database:', results);
+  } catch (error) {
+    console.error('Error fetching items:', error);
+  }
+};
+
+export const logAllSummaries = async (db: SQLiteDatabase): Promise<void> => {
+  try {
+    const results = await db.executeSql('SELECT * FROM summaries');
+    console.log('All summaries in the database:', results);
+  } catch (error) {
+    console.error('Error fetching summaries:', error);
+  }
+};
 
 export interface CategorizedReceiptItem {
   id?: number;
@@ -52,8 +70,10 @@ export const saveItem = async (
   name: string,
   price: number,
   category: string,
+  timestamp: string,
 ) => {
-  const timestamp = format(new Date(), 'dd/MM/yyyy HH:mm');
+  console.log(`Saving item with timestamp in saveItem: ${timestamp}`);
+
   await db.executeSql(
     'INSERT INTO items (name, price, category, timestamp) VALUES (?, ?, ?, ?)',
     [name, price, category, timestamp],
@@ -64,8 +84,9 @@ export const saveSummary = async (
   db: SQLiteDatabase,
   total: number,
   categoryTotals: {[key: string]: number},
+  timestamp: string,
 ) => {
-  const timestamp = format(new Date(), 'dd/MM/yyyy HH:mm');
+  console.log(`Saving summary with timestamp in saveSummary: ${timestamp}`);
   const categoryTotalsJson = JSON.stringify(categoryTotals);
   await db.executeSql(
     'INSERT INTO summaries (timestamp, total, category_totals) VALUES (?, ?, ?)',
@@ -93,13 +114,18 @@ export const loadItemsByDate = async (
     const groupedData = allRows.reduce<{
       [key: string]: CategorizedReceiptItem[];
     }>((acc, item) => {
-      const timestamp = item.timestamp!;
-      if (!acc[timestamp]) {
-        acc[timestamp] = [];
+      const formattedDate = format(
+        new Date(item.timestamp),
+        'dd/MM/yyyy HH:mm',
+      ); 
+
+      if (!acc[formattedDate]) {
+        acc[formattedDate] = [];
       }
-      acc[timestamp].push(item);
+      acc[formattedDate].push(item);
       return acc;
     }, {});
+
     callback(groupedData);
   } catch (error) {
     console.error('Error fetching items:', error);
@@ -127,12 +153,27 @@ export const loadSummaries = async (
     console.error('Error fetching summaries:', error);
   }
 };
-// Function to delete all data from the table
 export const deleteAllData = async (db: SQLiteDatabase): Promise<void> => {
-  await db.executeSql('DROP table items');
-  await db.executeSql('DROP table summaries');
+  try {
+    await db.executeSql('DROP table items');
+    await db.executeSql('DROP table summaries')
+  }
+  catch (error) {
+    console.error('Error deleting all data:', error);
+  }
 };
 
-export const deleteItemsByDate = async (db: SQLiteDatabase, date:string): Promise<void> => {
-  await db.executeSql('DELETE FROM items WHERE timestamp =?', [date]);
-}
+export const deleteItemsByDate = async (
+  db: SQLiteDatabase,
+  date: string,
+): Promise<void> => {
+console.log(date,"db")
+  // Log existing items before deletion for debugging
+  await logAllItems(db);
+
+  // Perform the deletion
+  await db.executeSql('DELETE FROM items WHERE timestamp = ?', [date]);
+
+  // Log existing items after deletion for debugging
+  await logAllItems(db);
+};

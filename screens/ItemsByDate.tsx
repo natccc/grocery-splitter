@@ -5,24 +5,32 @@ import {
   loadItemsByDate,
   connectToDatabase,
   loadSummaries,
+  ReceiptSummary,
+    CategorizedReceiptItem,
+    logAllItems,
+  logAllSummaries
 } from '../services/db-service';
-import {SQLiteDatabase} from 'react-native-sqlite-storage';
-const categoryColor= {
- 'Shared': '#F44336',
-  'Me': '#4CAF50',
-   'Friend':'#FFC107'
+import { SQLiteDatabase } from 'react-native-sqlite-storage';
+import {format} from 'date-fns';
+import { convertToISOString } from '../utils/convertToISOString';
+const categoryColor = {
+  Shared: '#F44336',
+  Me: '#4CAF50',
+  Friend: '#FFC107',
 };
 export default function ItemsByDate({route}) {
-  const [items, setItems] = useState([]);
-  const [summaries, setSummaries] = useState([]);
-  const {date} = route.params;
-
+  const [items, setItems] = useState<{[key: string]: CategorizedReceiptItem[]}>(
+    {},
+  );
+    const [summaries, setSummaries] = useState<ReceiptSummary[]>([]);
+    const { date } = route.params
+    const formattedDate = convertToISOString(date)
   useEffect(() => {
     const loadData = async () => {
       try {
         const db = await connectToDatabase();
         await loadItemsByDate(db, loadedData => setItems(loadedData));
-        await loadSummaries(db, date, loadedSummaries =>
+        await loadSummaries(db, formattedDate, loadedSummaries =>
           setSummaries(loadedSummaries),
         );
       } catch (error) {
@@ -34,31 +42,34 @@ export default function ItemsByDate({route}) {
     };
     loadData();
   }, [date]);
-
-  const itemsByDate = items[date] || [];
+    const itemsByDate = items[date] || [];
   const hasSummaries = summaries.length > 0 && summaries[0]?.category_totals;
   const parsedCategoryTotals = hasSummaries
     ? JSON.parse(summaries[0].category_totals)
     : {};
 
-  const renderItem = ({item}) => (
-    <View style={styles.item}>
-      <View style={styles.itemContent}>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemPrice}>£{item.price.toFixed(2)}</Text>
-        <Text style={[styles.itemCategory, {color: categoryColor[item.category]}]}>{item.category}</Text>
-      </View>
-    </View>
-  );
-
+    const renderItem = ({ item }: { item: CategorizedReceiptItem }) => {
+        return(<View style={styles.item}>
+            <View style={styles.itemContent}>
+                <Text style={styles.itemName}>{item.name}</Text>
+                <Text style={styles.itemPrice}>£{item.price.toFixed(2)}</Text>
+                <Text
+                    style={[styles.itemCategory, { color: categoryColor[item.category] }]}>
+                    {item.category}
+                </Text>
+            </View>
+        </View>)
+    }
 
   const renderFooter = () => (
     <View style={styles.summaryContainer}>
       <Text style={styles.sectionHeader}>Summary:</Text>
       {hasSummaries ? (
         Object.keys(parsedCategoryTotals).map(category => (
-            <Text key={category} style={[styles.summaryText, { color: categoryColor[category] }]}>
-                {category}: £{parsedCategoryTotals[category]}
+          <Text
+            key={category}
+            style={[styles.summaryText, {color: categoryColor[category]}]}>
+            {category}: £{parsedCategoryTotals[category]}
           </Text>
         ))
       ) : (
@@ -100,8 +111,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 0,
     marginHorizontal: 5,
-
- 
   },
   itemContent: {
     flexDirection: 'row',
@@ -129,8 +138,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginTop: 20,
     marginHorizontal: 10,
-    },
-  
+  },
+
   summaryText: {
     fontSize: 16,
     marginBottom: 5,

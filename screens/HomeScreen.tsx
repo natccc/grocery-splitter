@@ -39,7 +39,6 @@ export default function HomeScreen() {
             multiline
             numberOfLines={10}
             onChangeText={setCopiedText}
-            autoFocus={true}
             value={copiedText}
           />
           <TouchableOpacity style={styles.pasteButton} onPress={handlePaste}>
