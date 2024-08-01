@@ -64,7 +64,6 @@ export default function DateItems() {
       Alert.alert('Error', 'Failed to delete items.');
     }
   };
-  // console.log(data)
   const renderRightActions = (date: string) => {
 
     return (

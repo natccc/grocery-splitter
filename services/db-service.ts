@@ -7,23 +7,8 @@ import {format} from 'date-fns';
 import { convertToISOString } from '../utils/convertToISOString';
 
 enablePromise(true);
-export const logAllItems = async (db: SQLiteDatabase): Promise<void> => {
-  try {
-    const results = await db.executeSql('SELECT * FROM items');
-    console.log('All items in the database:', results);
-  } catch (error) {
-    console.error('Error fetching items:', error);
-  }
-};
 
-export const logAllSummaries = async (db: SQLiteDatabase): Promise<void> => {
-  try {
-    const results = await db.executeSql('SELECT * FROM summaries');
-    console.log('All summaries in the database:', results);
-  } catch (error) {
-    console.error('Error fetching summaries:', error);
-  }
-};
+
 
 export interface CategorizedReceiptItem {
   id?: number;
@@ -72,7 +57,6 @@ export const saveItem = async (
   category: string,
   timestamp: string,
 ) => {
-  console.log(`Saving item with timestamp in saveItem: ${timestamp}`);
 
   await db.executeSql(
     'INSERT INTO items (name, price, category, timestamp) VALUES (?, ?, ?, ?)',
@@ -86,7 +70,6 @@ export const saveSummary = async (
   categoryTotals: {[key: string]: number},
   timestamp: string,
 ) => {
-  console.log(`Saving summary with timestamp in saveSummary: ${timestamp}`);
   const categoryTotalsJson = JSON.stringify(categoryTotals);
   await db.executeSql(
     'INSERT INTO summaries (timestamp, total, category_totals) VALUES (?, ?, ?)',
@@ -167,13 +150,6 @@ export const deleteItemsByDate = async (
   db: SQLiteDatabase,
   date: string,
 ): Promise<void> => {
-console.log(date,"db")
-  // Log existing items before deletion for debugging
-  await logAllItems(db);
 
-  // Perform the deletion
   await db.executeSql('DELETE FROM items WHERE timestamp = ?', [date]);
-
-  // Log existing items after deletion for debugging
-  await logAllItems(db);
 };

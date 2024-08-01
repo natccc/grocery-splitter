@@ -61,7 +61,6 @@ export default function Categorise({route}) {
       now.setSeconds(0)
       now.setMilliseconds(0);
       const timestamp = now.toISOString()
-      console.log(timestamp, "timestamp while saving")
       await saveSummary(db, total, categoryTotals, timestamp);
       for (const item of categorizedItems) {
         await saveItem(db, item.name, item.price, item.category, timestamp);
