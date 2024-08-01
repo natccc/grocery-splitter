@@ -1,5 +1,5 @@
 # Grocery Splitter App
-#### Video Demo:  https://youtu.be/ieqKNDDNMGQ?si=IK6bMaauRVUns1Km
+#### Video Demo 📹:  https://youtu.be/WJnTLLJ5n-Q?si=zF1-JP_jFIwNqPcI
 
 ## Overview
 
