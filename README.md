@@ -1,4 +1,5 @@
 # Grocery Splitter App
+#### Video Demo:  https://youtu.be/ieqKNDDNMGQ?si=IK6bMaauRVUns1Km
 
 ## Overview
 
@@ -28,8 +29,8 @@ My partner and I frequently go grocery shopping together, and we often check out
 
 ### Prerequisites
 
-- An iOS device running iOS 14.0 or later.
-- Xcode 12 or later for building the app from source.
+- An iOS device running iOS 17.0 or later.
+- Xcode 15.4 or later for building the app from source.
 
 ### Installation
 
