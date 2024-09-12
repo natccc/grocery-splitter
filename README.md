@@ -3,7 +3,7 @@
 
 ## Overview
 
-Grocery Splitter is an iOS-exclusive application designed to to make bill splitting easier for couples or friends who shop together but need to reimburse personal items. The app utilizes the VisionKit in iOS to extract text from images and supports and is specifically tailored to handle receipts from Sainsbury's.
+Grocery Splitter is an iOS-exclusive application designed to to make bill splitting easier for couples or friends who shop together but need to reimburse personal items. The app utilizes the VisionKit in iOS to extract text from images and is specifically tailored to handle receipts from Sainsbury's.
 
 This project is the final project for CS50, Harvard University's introduction to computer science.
 
